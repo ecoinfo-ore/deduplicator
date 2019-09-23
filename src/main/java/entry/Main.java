@@ -1,20 +1,20 @@
 package entry;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecutor;
+import static java.lang.System.getProperty;
+import static com.inra.coby.deduplicator.Commands.rm;
+import static com.inra.coby.deduplicator.Commands.mkdir;
+import static com.inra.coby.deduplicator.Commands.runCmd;
+import static com.inra.coby.deduplicator.Commands.extractExec;
+import static com.inra.coby.deduplicator.Utils.removeLastSlash;
 
 public class Main {
 
     /*
-     java -DFromDirectory="DATA"     \
-          -DSizeFile=2000000         \
-          -DToDirectory="DATA/UNIQ"  \
-          -DExtension="*.txt"        \
+     java -DFromDirectory="Data"    \
+          -DSizeFile=2000000        \
+          -DToDirectory="Data/Uniq" \
+          -DExtension="*.txt"       \
           -jar deduplicator.jar
     */
             
@@ -148,50 +148,8 @@ public class Main {
                 
                 runCmd("cmd", "/c", cmdDel )     ;
             }
+            
+            rm(destFolder) ;
         }
-    }
-
-    public static void extractExec( String path , String prg , String dest ) throws IOException {
-        OutputStream os ;
-        try (InputStream is = Main.class.getClassLoader()
-                                                   .getResource( path + "/" + prg )
-                                                   .openStream())                 {
-            os = new FileOutputStream( dest + File.separator + prg )  ;
-            byte[] b = new byte[2048]             ;
-            int length                            ;
-            while ((length = is.read(b)) != -1 )  {
-                  os.write(b, 0, length)          ;
-            }
-        }
-        os.close() ;
-    }
-
-    private static String getProperty(String property) {
-        return System.getProperty(property) != null
-               ? System.getProperty(property) : ""     ;
-    }
-
-    private static String removeLastSlash(String directoryPath )          {
-        if ( ! directoryPath.isEmpty()            && 
-               directoryPath.trim().endsWith(File.separator))             {
-            return directoryPath.substring ( 0     ,
-                                             directoryPath.length() - 1 ) ;
-        }
-        return directoryPath ;
-    }
-    
-    public static boolean mkdir(String directory ) {
-        System.out.println(" Create Folder : " + directory ) ;
-        File fDirectory = new File(directory) ;
-        return fDirectory.mkdir() ;
-    }
-    
-    public static int runCmd( String executable, String arg, String cmd ) throws IOException {
-        System.out.println(" + CMD : " + cmd )                 ;
-        CommandLine cmdLine = new CommandLine(executable)      ;
-        cmdLine.addArguments(new String[] { arg, cmd }, false) ;
-        DefaultExecutor executor = new DefaultExecutor()       ;
-         executor.setExitValue(0)                              ;
-        return executor.execute(cmdLine)                       ;
-    }
+    }    
 }
