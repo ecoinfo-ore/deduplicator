@@ -1,10 +1,10 @@
 package entry;
 
 import java.io.File;
-import static java.lang.System.getProperty;
 import static com.inra.coby.deduplicator.Commands.rm;
 import static com.inra.coby.deduplicator.Commands.mkdir;
 import static com.inra.coby.deduplicator.Commands.runCmd;
+import static com.inra.coby.deduplicator.Utils.getProperty;
 import static com.inra.coby.deduplicator.Commands.extractExec;
 import static com.inra.coby.deduplicator.Utils.removeLastSlash;
 
