@@ -49,17 +49,17 @@ public class Main {
         
         String extension     = getProperty("Extension").isEmpty() ? "*.*" :
                                getProperty("Extension")     ;
+       
+        if( fromDirectory.isEmpty() ) {
+           System.out.println(" FromDirectory Can not be Null or Empty ! " ) ;
+           System.exit(0) ;
+        }
         
-        String inplace       = !getProperty("Inplace").isEmpty()
+        String inplace       = ! getProperty("Inplace").isEmpty()
                                ? " -i inplace "       :
                                toDirectory.isEmpty()  ? 
                                " -i inplace " : " "   ;
-        
-        if( fromDirectory.isEmpty() ) {
-            System.out.println(" FromDirectory Can not be Null or Empty ! " ) ;
-            System.exit(0) ;
-        }
-        
+               
         if (nameFile.isEmpty()) nameFile = "Data"    ; 
         if (suffix.isEmpty())   suffix   = ".ttl"    ;
         if (sizeFile.isEmpty()) sizeFile = "1000000" ;
@@ -137,7 +137,7 @@ public class Main {
             
             if ( !inplace.trim().isEmpty() )     {
 
-                String cmdDel = destFolder       + 
+                String cmdDel = destFolder       +
                                 File.separator   +
                                 "delEmpty.exe "  +
                                 " -f "           +
