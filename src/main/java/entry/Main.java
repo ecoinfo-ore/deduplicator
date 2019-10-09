@@ -41,7 +41,7 @@ public class Main {
         
         String fromDirectory = getProperty("FromDirectory") ;
         String toDirectory   = getProperty("ToDirectory")   ;
-        String nameFile      = getProperty("nameFile")      ;
+        String nameFile      = getProperty("NameFile")      ;
         String ignoreFile    = getProperty("IgnoreFile")    ;
         String suffix        = getProperty("Suffix")        ;
         String sizeFile      = getProperty("SizeFile")      ;
