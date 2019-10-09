@@ -33,7 +33,6 @@ public class Main {
             System.out.println("   Suffix        :  Add Suffix to processed Files ")  ;
             System.out.println("   Extension     :  Extension Files to process    ")  ;
             System.out.println("   IgnoreFile    :  Ingoring process Files.       ")  ;
-            System.out.println("   IgnoreFile    :  Ingoring process Files.       ")  ;
             System.out.println("                    Ex : -DIgnoreFile='onto/*.*'  ")  ;
             System.out.println(" #################################################")  ;
             System.out.println("                                                  ")  ;
