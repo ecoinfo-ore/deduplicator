@@ -17,7 +17,7 @@ Example :
 
         java -DFromDirectory="Data"     \
              -DSizeFile=2000000         \
-             -DToDirectory="Data/Uiniq" \
+             -DToDirectory="Data/Uniq" \
              -DExtension="*.txt"        \
              -jar deduplicator.jar
 
